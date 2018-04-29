@@ -22,6 +22,7 @@ public class GuiDodaj extends JFrame {
 	private JPanel panel;
 	private JButton btnIzadji;
 	private JTable table;
+	private JButton btnDodaj;
 
 	/**
 	 * Launch the application.
@@ -43,6 +44,7 @@ public class GuiDodaj extends JFrame {
 	 * Create the frame.
 	 */
 	public GuiDodaj() {
+		setResizable(false);
 		setTitle("Dodaj");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -51,7 +53,7 @@ public class GuiDodaj extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
-		contentPane.add(getPanel(), BorderLayout.EAST);
+		contentPane.add(getPanel(), BorderLayout.EAST);		
 	}
 
 	private JScrollPane getScrollPane() {
@@ -67,6 +69,7 @@ public class GuiDodaj extends JFrame {
 			panel.setPreferredSize(new Dimension(100, 10));
 			panel.setLayout(null);
 			panel.add(getBtnIzadji());
+			panel.add(getBtnDodaj());
 		}
 		return panel;
 	}
@@ -78,7 +81,7 @@ public class GuiDodaj extends JFrame {
 					System.exit(0);
 				}
 			});
-			btnIzadji.setBounds(20, 217, 59, 23);
+			btnIzadji.setBounds(10, 217, 80, 23);
 		}
 		return btnIzadji;
 	}
@@ -111,8 +114,27 @@ public class GuiDodaj extends JFrame {
 				new String[] {
 					"Proizvod", "Cena"
 				}
-			));
+			) {
+				Class[] columnTypes = new Class[] {
+					String.class, Double.class
+				};
+				public Class getColumnClass(int columnIndex) {
+					return columnTypes[columnIndex];
+				}
+			});
 		}
 		return table;
+	}
+	private JButton getBtnDodaj() {
+		if (btnDodaj == null) {
+			btnDodaj = new JButton("Dodaj");
+			btnDodaj.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+				}
+			});
+			btnDodaj.setBounds(10, 11, 80, 23);
+		}
+		return btnDodaj;
 	}
 }
