@@ -11,7 +11,6 @@ import javax.swing.JButton;
 public class GlavniProzorGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnRacun;
 
 	/**
 	 * Launch the application.
@@ -38,15 +37,7 @@ public class GlavniProzorGUI extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		contentPane.add(getBtnRacun(), BorderLayout.CENTER);
-	}
-
-	private JButton getBtnRacun() {
-		if (btnRacun == null) {
-			btnRacun = new JButton("Racun");
-		}
-		return btnRacun;
+		contentPane.setLayout(new BorderLayout(0, 0));
 	}
 }
