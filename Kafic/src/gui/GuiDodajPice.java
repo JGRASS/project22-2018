@@ -1,8 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,30 +19,14 @@ public class GuiDodajPice extends JFrame {
 	private JTextField jtfCena;
 	private JButton btnDodaj;
 	private JButton btnIzadji;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GuiDodajPice frame = new GuiDodajPice();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
 	public GuiDodajPice() {
 		setResizable(false);
 		setTitle("Dodaj pice");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 462, 301);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -95,6 +76,10 @@ public class GuiDodajPice extends JFrame {
 	private JButton getBtnDodaj() {
 		if (btnDodaj == null) {
 			btnDodaj = new JButton("Dodaj");
+			btnDodaj.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
 			btnDodaj.setBounds(294, 152, 140, 42);
 		}
 		return btnDodaj;
@@ -104,7 +89,7 @@ public class GuiDodajPice extends JFrame {
 			btnIzadji = new JButton("Izadji");
 			btnIzadji.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.exit(0);
+					dispose();
 				}
 			});
 			btnIzadji.setBounds(294, 218, 140, 42);

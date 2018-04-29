@@ -12,6 +12,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import gui.kontroler.GuiKontroler;
+
 import java.awt.SystemColor;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -23,6 +26,7 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class GlavniProzorGUI extends JFrame {
 
@@ -37,23 +41,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JButton btnDodajArtikal;
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmDodajSto;
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GlavniProzorGUI frame = new GlavniProzorGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JButton btnIzadji;
 
 	/**
 	 * Create the frame.
@@ -92,8 +80,9 @@ public class GlavniProzorGUI extends JFrame {
 					.addGroup(gl_panel_1.createSequentialGroup()
 						.addContainerGap()
 						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-							.addComponent(getBtnRacuni(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-							.addComponent(getBtnDodajSto(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+							.addComponent(getBtnIzadji(), GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+							.addComponent(getBtnRacuni(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+							.addComponent(getBtnDodajSto(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
 							.addComponent(getBtnDodajArtikal(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(getBtnNewButton_3(), GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
 						.addContainerGap())
@@ -109,7 +98,9 @@ public class GlavniProzorGUI extends JFrame {
 						.addComponent(getBtnRacuni(), GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(getBtnDodajArtikal(), GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(74, Short.MAX_VALUE))
+						.addGap(32)
+						.addComponent(getBtnIzadji(), GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 			);
 			panel_1.setLayout(gl_panel_1);
 		}
@@ -183,6 +174,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnDodajArtikal = new JButton("Dodaj artikal");
 			btnDodajArtikal.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					GuiKontroler.prikaziDodajPice();
 				}
 			});
 			btnDodajArtikal.setBackground(SystemColor.textHighlight);
@@ -229,5 +221,22 @@ public class GlavniProzorGUI extends JFrame {
 			});
 		}
 		return mntmDodajSto;
+	}
+	private JButton getBtnIzadji() {
+		if (btnIzadji == null) {
+			btnIzadji = new JButton("Izlaz");
+			btnIzadji.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					izlaz();
+				}
+			});
+		}
+		return btnIzadji;
+	}
+	
+	private void izlaz() {
+		int opcija = JOptionPane.showConfirmDialog(null, "Da li zelite da izadjete?", "Izlaz", JOptionPane.YES_NO_OPTION);
+		if(opcija == JOptionPane.YES_OPTION)
+			System.exit(0);
 	}
 }
