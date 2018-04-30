@@ -15,6 +15,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import gui.kontroler.GuiKontroler;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -30,27 +33,12 @@ public class GuiStanje extends JFrame {
 	private JTextField textFieldSuma;
 	private JTable tableTabela;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GuiStanje frame = new GuiStanje();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public GuiStanje() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -127,6 +115,7 @@ public class GuiStanje extends JFrame {
 			btnDodaj = new JButton("Dodaj");
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					GuiKontroler.guiDodaj();
 				}
 			});
 		}
@@ -172,23 +161,23 @@ public class GuiStanje extends JFrame {
 			tableTabela = new JTable();
 			tableTabela.setModel(new DefaultTableModel(
 				new Object[][] {
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
 				},
 				new String[] {
-					"Proizvod", "Cena"
+					"Proizvod", "Cena", "Kolicina"
 				}
 			) {
 				Class[] columnTypes = new Class[] {
-					Object.class, Integer.class
+					Object.class, Integer.class, Integer.class
 				};
 				public Class getColumnClass(int columnIndex) {
 					return columnTypes[columnIndex];

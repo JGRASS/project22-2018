@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ import java.awt.event.ContainerAdapter;
 import java.awt.event.ContainerEvent;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
+import java.awt.Desktop.Action;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JMenuItem;
@@ -35,13 +37,12 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JButton btnNewButton;
-	private JButton btnNewButton_3;
-	private JButton btnDodajSto;
 	private JButton btnRacuni;
 	private JButton btnDodajArtikal;
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmDodajSto;
 	private JButton btnIzadji;
+	private JMenuItem mntmObrisiSto;
 
 	/**
 	 * Create the frame.
@@ -81,24 +82,18 @@ public class GlavniProzorGUI extends JFrame {
 						.addContainerGap()
 						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 							.addComponent(getBtnIzadji(), GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-							.addComponent(getBtnRacuni(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-							.addComponent(getBtnDodajSto(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-							.addComponent(getBtnDodajArtikal(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(getBtnNewButton_3(), GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+							.addComponent(getBtnRacuni(), GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+							.addComponent(getBtnDodajArtikal(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 						.addContainerGap())
 			);
 			gl_panel_1.setVerticalGroup(
 				gl_panel_1.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_panel_1.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(getBtnDodajSto(), GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addGap(3)
-						.addComponent(getBtnNewButton_3(), GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(getBtnRacuni(), GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGap(18)
 						.addComponent(getBtnDodajArtikal(), GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addGap(32)
+						.addGap(91)
 						.addComponent(getBtnIzadji(), GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 			);
@@ -131,37 +126,6 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnNewButton;
 	}
-	private JButton getBtnNewButton_3() {
-		if (btnNewButton_3 == null) {
-			btnNewButton_3 = new JButton("Obrisi sto");
-			btnNewButton_3.setBackground(SystemColor.textHighlight);
-		}
-		return btnNewButton_3;
-	}
-	private JButton getBtnDodajSto() {
-		if (btnDodajSto == null) {
-			btnDodajSto = new JButton("Dodaj sto");
-			btnDodajSto.addContainerListener(new ContainerAdapter() {
-				
-			});
-			btnDodajSto.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-			        JButton b1 = new JButton();
-			        
-			        
-			        b1.setSize(40,40);
-			        b1.setVisible(true);
-			        b1.setLocation(getMousePosition());
-			        panel_2.add(b1);
-			        
-					
-				}
-			});
-			btnDodajSto.setBackground(SystemColor.textHighlight);
-		}
-		return btnDodajSto;
-	}
 	private JButton getBtnRacuni() {
 		if (btnRacuni == null) {
 			btnRacuni = new JButton("Racuni");
@@ -185,6 +149,7 @@ public class GlavniProzorGUI extends JFrame {
 		if (popupMenu == null) {
 			popupMenu = new JPopupMenu();
 			popupMenu.add(getMntmDodajSto());
+			popupMenu.add(getMntmObrisiSto());
 		}
 		return popupMenu;
 	}
@@ -212,11 +177,24 @@ public class GlavniProzorGUI extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					
 					JButton b1 = new JButton();
+					
 					b1.setSize(90,90);
 			        b1.setVisible(true);
 			        b1.setLocation(getMousePosition());
+			        b1.setText("Sto");
+			        b1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							GuiKontroler.guiStanje();
+						}
+			        });
+
+			      
+			        
+			        
 			        
 			        panel_2.add(b1);
+			        
+			        
 				}
 			});
 		}
@@ -225,6 +203,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JButton getBtnIzadji() {
 		if (btnIzadji == null) {
 			btnIzadji = new JButton("Izlaz");
+			btnIzadji.setBackground(Color.RED);
 			btnIzadji.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					izlaz();
@@ -238,5 +217,17 @@ public class GlavniProzorGUI extends JFrame {
 		int opcija = JOptionPane.showConfirmDialog(null, "Da li zelite da izadjete?", "Izlaz", JOptionPane.YES_NO_OPTION);
 		if(opcija == JOptionPane.YES_OPTION)
 			System.exit(0);
+	}
+	private JMenuItem getMntmObrisiSto() {
+		if (mntmObrisiSto == null) {
+			mntmObrisiSto = new JMenuItem("Obrisi sto");
+			mntmObrisiSto.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+					
+				}
+			});
+		}
+		return mntmObrisiSto;
 	}
 }
