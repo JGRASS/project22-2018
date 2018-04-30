@@ -27,6 +27,8 @@ import java.awt.Component;
 import java.awt.Desktop.Action;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
@@ -43,6 +45,8 @@ public class GlavniProzorGUI extends JFrame {
 	private JMenuItem mntmDodajSto;
 	private JButton btnIzadji;
 	private JMenuItem mntmObrisiSto;
+	private int brojStola = 1;
+	private LinkedList<JButton> stolovi = new LinkedList<>();
 
 	/**
 	 * Create the frame.
@@ -93,9 +97,9 @@ public class GlavniProzorGUI extends JFrame {
 						.addComponent(getBtnRacuni(), GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addGap(18)
 						.addComponent(getBtnDodajArtikal(), GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addGap(91)
+						.addPreferredGap(ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
 						.addComponent(getBtnIzadji(), GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addContainerGap())
 			);
 			panel_1.setLayout(gl_panel_1);
 		}
@@ -181,7 +185,9 @@ public class GlavniProzorGUI extends JFrame {
 					b1.setSize(90,90);
 			        b1.setVisible(true);
 			        b1.setLocation(getMousePosition());
-			        b1.setText("Sto");
+			        b1.setText("Sto "+brojStola);
+			        brojStola++;
+			        stolovi.add(b1);
 			        b1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							GuiKontroler.guiStanje();
