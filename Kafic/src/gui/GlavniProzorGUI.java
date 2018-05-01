@@ -27,17 +27,20 @@ import java.awt.Component;
 import java.awt.Desktop.Action;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.LinkedList;
 
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class GlavniProzorGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
 	private JPanel panel_1;
-	private JPanel panel_2;
+	public static JPanel panel_2;
 	private JButton btnNewButton;
 	private JButton btnRacuni;
 	private JButton btnDodajArtikal;
@@ -45,8 +48,8 @@ public class GlavniProzorGUI extends JFrame {
 	private JMenuItem mntmDodajSto;
 	private JButton btnIzadji;
 	private JMenuItem mntmObrisiSto;
-	private int brojStola = 1;
-	private LinkedList<JButton> stolovi = new LinkedList<>();
+	public static int brojStola = 1;
+	
 
 	/**
 	 * Create the frame.
@@ -185,9 +188,9 @@ public class GlavniProzorGUI extends JFrame {
 					b1.setSize(90,90);
 			        b1.setVisible(true);
 			        b1.setLocation(getMousePosition());
-			        b1.setText("Sto "+brojStola);
+			        b1.setText("Sto br. "+brojStola);
 			        brojStola++;
-			        stolovi.add(b1);
+			        GuiKontroler.stolovi.add(b1);
 			        b1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							GuiKontroler.guiStanje();
@@ -229,6 +232,10 @@ public class GlavniProzorGUI extends JFrame {
 			mntmObrisiSto = new JMenuItem("Obrisi sto");
 			mntmObrisiSto.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					
+					GuiKontroler.obrisiSto();
+					
+					
 					
 					
 				}

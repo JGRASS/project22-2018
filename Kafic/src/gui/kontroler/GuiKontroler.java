@@ -3,6 +3,7 @@ package gui.kontroler;
 import java.awt.EventQueue;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -11,10 +12,13 @@ import gui.GlavniProzorGUI;
 import gui.GuiDodaj;
 import gui.GuiDodajPice;
 import gui.GuiStanje;
+import gui.ObrisiStoGUI;
+
 
 public class GuiKontroler {
 	
 	public static GlavniProzorGUI gp;
+	public static LinkedList<JButton> stolovi = new LinkedList<>();
 	
 	/**
 	 * Launch the application.
@@ -65,6 +69,13 @@ public class GuiKontroler {
 		guiStanje.setLocationRelativeTo(gp);
 		guiStanje.setVisible(true);
 	}
+	
+	public static void obrisiSto() {
+		ObrisiStoGUI obrisiSto= new ObrisiStoGUI();
+		obrisiSto.setVisible(true);
+		
+	}
+	
 	
 	
 	
