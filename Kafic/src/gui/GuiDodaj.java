@@ -12,8 +12,15 @@ import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import gui.kontroler.GuiKontroler;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.AbstractListModel;
 
 public class GuiDodaj extends JFrame {
 
@@ -21,8 +28,7 @@ public class GuiDodaj extends JFrame {
 	private JScrollPane scrollPane;
 	private JPanel panel;
 	private JButton btnIzadji;
-	private JTable table;
-	private JButton btnDodaj;
+	private JList list;
 
 	/**
 	 * Launch the application.
@@ -59,7 +65,7 @@ public class GuiDodaj extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setViewportView(getTable());
+			scrollPane.setViewportView(getList());
 		}
 		return scrollPane;
 	}
@@ -69,7 +75,6 @@ public class GuiDodaj extends JFrame {
 			panel.setPreferredSize(new Dimension(100, 10));
 			panel.setLayout(null);
 			panel.add(getBtnIzadji());
-			panel.add(getBtnDodaj());
 		}
 		return panel;
 	}
@@ -85,56 +90,58 @@ public class GuiDodaj extends JFrame {
 		}
 		return btnIzadji;
 	}
-	private JTable getTable() {
-		if (table == null) {
-			table = new JTable();
-			table.setModel(new DefaultTableModel(
-				new Object[][] {
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-					{null, null},
-				},
-				new String[] {
-					"Proizvod", "Cena"
+	private JList getList() {
+		if (list == null) {
+			list = new JList();
+			list.setModel(new AbstractListModel() {
+				String[] values = new String[] {"kola 150", "pepsi 120"};
+				public int getSize() {
+					return values.length;
 				}
-			) {
-				Class[] columnTypes = new Class[] {
-					String.class, Double.class
-				};
-				public Class getColumnClass(int columnIndex) {
-					return columnTypes[columnIndex];
+				public Object getElementAt(int index) {
+					return values[index];
+				}
+			});
+			list.addMouseListener(new MouseAdapter() {
+				
+				public void mouseClicked(MouseEvent e) {
+					if(e.getClickCount()==2) {
+						String artikal = list.getSelectedValue()+"";
+						String[] niz = artikal.split(" ");
+						int cena = Integer.parseInt(niz[1]);
+						int suma=Integer.parseInt(GuiStanje.textFieldSuma.getText());
+						
+						for(int i=0; i<GuiStanje.tableTabela.getRowCount();i++)
+							if((GuiStanje.tableTabela.getValueAt(i, 0)+"").equals(niz[0])) {
+								int kolicina = Integer.parseInt(""+GuiStanje.tableTabela.getValueAt(i, 2));
+								
+								GuiStanje.tableTabela.setValueAt((kolicina+1), i, 2);
+								
+								GuiStanje.textFieldSuma.setText(cena+suma+"");
+								
+								break;
+							}
+							else {
+								if(GuiStanje.tableTabela.getValueAt(i, 0)==null) {
+									GuiStanje.tableTabela.setValueAt(niz[0], i, 0);
+									GuiStanje.tableTabela.setValueAt(niz[1], i, 1);
+									GuiStanje.tableTabela.setValueAt(1, i, 2);
+									GuiStanje.textFieldSuma.setText(cena+suma+"");
+									break;
+								}
+									
+								
+							}
+
+
+								
+						
+						
+						
+					}
 				}
 			});
 		}
-		return table;
-	}
-	private JButton getBtnDodaj() {
-		if (btnDodaj == null) {
-			btnDodaj = new JButton("Dodaj");
-			btnDodaj.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					
-				}
-			});
-			btnDodaj.setBounds(10, 11, 80, 23);
-		}
-		return btnDodaj;
+		return list;
 	}
 }

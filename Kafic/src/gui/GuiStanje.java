@@ -30,8 +30,8 @@ public class GuiStanje extends JFrame {
 	private JButton btnDodaj;
 	private JButton btnObrisi;
 	private JButton btnIzadji;
-	private JTextField textFieldSuma;
-	private JTable tableTabela;
+	public static JTextField textFieldSuma;
+	public static JTable tableTabela;
 
 	
 
@@ -39,6 +39,7 @@ public class GuiStanje extends JFrame {
 	 * Create the frame.
 	 */
 	public GuiStanje() {
+		setTitle("Stanje stola");
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,6 +48,7 @@ public class GuiStanje extends JFrame {
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel(), BorderLayout.EAST);
 		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
+		
 	}
 
 	private JScrollPane getScrollPane() {
@@ -130,7 +132,7 @@ public class GuiStanje extends JFrame {
 						for(int j=0; j<tableTabela.getColumnCount(); j++)
 							tableTabela.setValueAt(null, i, j);
 							
-								
+					textFieldSuma.setText("0");	
 				}
 			});
 		}
@@ -151,6 +153,7 @@ public class GuiStanje extends JFrame {
 	private JTextField getTextFieldSuma() {
 		if (textFieldSuma == null) {
 			textFieldSuma = new JTextField();
+			textFieldSuma.setText("0");
 			textFieldSuma.setEditable(false);
 			textFieldSuma.setColumns(10);
 		}
@@ -177,7 +180,7 @@ public class GuiStanje extends JFrame {
 				}
 			) {
 				Class[] columnTypes = new Class[] {
-					Object.class, Integer.class, Integer.class
+					Object.class, Object.class, Integer.class
 				};
 				public Class getColumnClass(int columnIndex) {
 					return columnTypes[columnIndex];

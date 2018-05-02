@@ -59,7 +59,7 @@ public class GuiKontroler {
 	public static void guiDodaj() {
 		
 		GuiDodaj guiDodaj = new GuiDodaj();
-		guiDodaj.setLocationRelativeTo(gp);
+		
 		guiDodaj.setVisible(true);
 	}
 	

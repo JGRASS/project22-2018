@@ -41,7 +41,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel panel;
 	private JPanel panel_1;
 	public static JPanel panel_2;
-	private JButton btnNewButton;
+	private JButton btnMeni;
 	private JButton btnRacuni;
 	private JButton btnDodajArtikal;
 	private JPopupMenu popupMenu;
@@ -73,7 +73,7 @@ public class GlavniProzorGUI extends JFrame {
 		if (panel == null) {
 			panel = new JPanel();
 			panel.setLayout(new BorderLayout(0, 0));
-			panel.add(getBtnNewButton(), BorderLayout.CENTER);
+			panel.add(getBtnMeni(), BorderLayout.CENTER);
 		}
 		return panel;
 	}
@@ -127,11 +127,11 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return panel_2;
 	}
-	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("Skladiste");
+	private JButton getBtnMeni() {
+		if (btnMeni == null) {
+			btnMeni = new JButton("Meni");
 		}
-		return btnNewButton;
+		return btnMeni;
 	}
 	private JButton getBtnRacuni() {
 		if (btnRacuni == null) {
