@@ -19,6 +19,7 @@ public class GuiKontroler {
 	
 	public static GlavniProzorGUI gp;
 	public static LinkedList<JButton> stolovi = new LinkedList<>();
+	public static LinkedList<GuiStanje> prozori = new LinkedList<>();
 	
 	/**
 	 * Launch the application.

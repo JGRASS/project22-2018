@@ -191,9 +191,18 @@ public class GlavniProzorGUI extends JFrame {
 			        b1.setText("Sto br. "+brojStola);
 			        brojStola++;
 			        GuiKontroler.stolovi.add(b1);
+			        GuiStanje guistanje = new GuiStanje();
+			        GuiKontroler.prozori.add(guistanje);
+			        
+			        
+					
+			        
+			        
 			        b1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							GuiKontroler.guiStanje();
+							//GuiKontroler.guiStanje();
+							GuiKontroler.prozori.get(brojStola-2).setVisible(true);
+							
 						}
 			        });
 

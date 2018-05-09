@@ -116,9 +116,7 @@ public class GuiDodaj extends JFrame {
 								int kolicina = Integer.parseInt(""+GuiStanje.tableTabela.getValueAt(i, 2));
 								
 								GuiStanje.tableTabela.setValueAt((kolicina+1), i, 2);
-								
 								GuiStanje.textFieldSuma.setText(cena+suma+"");
-								
 								break;
 							}
 							else {
@@ -131,13 +129,7 @@ public class GuiDodaj extends JFrame {
 								}
 									
 								
-							}
-
-
-								
-						
-						
-						
+							}	
 					}
 				}
 			});
